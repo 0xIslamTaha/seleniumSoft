@@ -11,6 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 import requests
 from framework.utiles.elements import elements
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BaseTest(unittest.TestCase):
@@ -220,13 +221,6 @@ class BaseTest(unittest.TestCase):
         else:
             self.fail("this %s item isn't exist in this url: %s" % (text_item, self.get_url()))
 
-    def get_storage_list(self):
-        locations = self.environment_storage.split(',')
-        if len(locations) < 2:
-            return []
-        else:
-            return locations
-
     def maximize_window(self):
         time.sleep(1)
         screen_dimention = self.driver.get_window_size()
@@ -246,3 +240,7 @@ class BaseTest(unittest.TestCase):
                     time.sleep(2)
                 except Exception as e:
                     self.lg(' * Exception : %s ' % str(e))
+
+    def hover_over_element(self, element):
+        element_to_hover_over = self.find_element(element=element)
+        ActionChains(self.driver).move_to_element(element_to_hover_over).perform()
