@@ -1,4 +1,4 @@
-import time
+import time, random
 import unittest
 import logging
 from testconfig import config
@@ -9,43 +9,46 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
-import requests
-from framework.utiles.elements import elements
 from selenium.webdriver.common.action_chains import ActionChains
+from framework.utiles.__init__ import CONFIG
+from framework.utiles.elements import elements
+
+
+def set_browser():
+    if CONFIG['browser'] == 'chrome':
+        DRIVER = webdriver.Chrome()
+    elif CONFIG['browser'] == 'firefox':
+        DRIVER = webdriver.Firefox()
+    elif CONFIG['browser'] == 'ie':
+        DRIVER = webdriver.Ie()
+    elif CONFIG['browser'] == 'opera':
+        DRIVER = webdriver.Opera()
+    elif CONFIG['browser'] == 'safari':
+        DRIVER = webdriver.Safari
+    else:
+        print("Invalid browser configuration [%s]" % CONFIG['browser'])
+    return DRIVER
+DRIVER = set_browser()
 
 
 class BaseTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.url = config['config']['url']
-        self.admin_username = config['config']['admin_username']
-        self.admin_password = config['config']['admin_password']
-        self.user_username = config['config']['user_username']
-        self.user_password = config['config']['user_password']
-        self.browser = config['config']['browser']
-
+        self.url = CONFIG['url']
+        self.admin_username = CONFIG['admin_username']
+        self.admin_password = CONFIG['admin_password']
+        self.user_username = CONFIG['admin_username']
+        self.user_password = CONFIG['user_password']
+        self.browser = CONFIG['browser']
         self.elements = elements
-        self.session = requests.Session()
+        self.session = CONFIG['session']
+        self.driver = DRIVER
 
     def setUp(self):
-        self.set_browser()
+        pass
 
     def tearDown(self):
-        self.driver.quit()
-
-    def set_browser(self):
-        if self.browser == 'chrome':
-            self.driver = webdriver.Chrome()
-        elif self.browser == 'firefox':
-            self.driver = webdriver.Firefox()
-        elif self.browser == 'ie':
-            self.driver = webdriver.Ie()
-        elif self.browser == 'opera':
-            self.driver = webdriver.Opera()
-        elif self.browser == 'safari':
-            self.driver = webdriver.Safari
-        else:
-            self.fail("Invalid browser configuration [%s]" % self.browser)
+        pass
 
     def lg(self, msg):
         #self._logger.info(msg)
@@ -244,3 +247,11 @@ class BaseTest(unittest.TestCase):
     def hover_over_element(self, element):
         element_to_hover_over = self.find_element(element=element)
         ActionChains(self.driver).move_to_element(element_to_hover_over).perform()
+
+    def generate_random_string(self):
+        result = ''
+        chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        for i in range(random.randint(0, len(chars))):
+            result += random.choice(chars)
+        return result
+
