@@ -1,14 +1,14 @@
-from framework.utiles.utiles import BaseTest
-from framework.pages.loginpage import LoginPage
-from framework.navigation.main_menu import MainMenu
+from pageObjects.basePage.base_page import BasePage
+from pageObjects.pages.login_page import LoginPage
+from pageObjects.navigation.main_menu import MainMenu
 import uuid
 
 
-class UsersPage(BaseTest):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.login_page = LoginPage()
-        self.main_menu = MainMenu()
+class UsersPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.login_page = LoginPage(driver)
+        self.main_menu = MainMenu(driver)
 
     def get_users_page(self):
         return self.main_menu.get_users_page()

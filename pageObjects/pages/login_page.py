@@ -1,7 +1,7 @@
-from framework.utiles.utiles import BaseTest
+from pageObjects.basePage.base_page import BasePage
 
 
-class LoginPage(BaseTest):
+class LoginPage(BasePage):
     def get_login_page(self):
         self.get_page(page_url=self.url)
 

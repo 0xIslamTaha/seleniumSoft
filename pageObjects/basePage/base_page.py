@@ -10,30 +10,12 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-from framework.utiles.__init__ import CONFIG
-from framework.utiles.elements import elements
+from pageObjects.basePage.__init__ import CONFIG
+from pageObjects.basePage.elements import elements
 
 
-def set_browser():
-    if CONFIG['browser'] == 'chrome':
-        DRIVER = webdriver.Chrome()
-    elif CONFIG['browser'] == 'firefox':
-        DRIVER = webdriver.Firefox()
-    elif CONFIG['browser'] == 'ie':
-        DRIVER = webdriver.Ie()
-    elif CONFIG['browser'] == 'opera':
-        DRIVER = webdriver.Opera()
-    elif CONFIG['browser'] == 'safari':
-        DRIVER = webdriver.Safari
-    else:
-        print("Invalid browser configuration [%s]" % CONFIG['browser'])
-    return DRIVER
-DRIVER = set_browser()
-
-
-class BaseTest(unittest.TestCase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+class BasePage:
+    def __init__(self, driver):
         self.url = CONFIG['url']
         self.admin_username = CONFIG['admin_username']
         self.admin_password = CONFIG['admin_password']
@@ -42,16 +24,9 @@ class BaseTest(unittest.TestCase):
         self.browser = CONFIG['browser']
         self.elements = elements
         self.session = CONFIG['session']
-        self.driver = DRIVER
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
+        self.driver = driver
 
     def lg(self, msg):
-        #self._logger.info(msg)
         pass
 
     def wait_until_element_located(self, element):
