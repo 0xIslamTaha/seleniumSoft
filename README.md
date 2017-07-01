@@ -1,5 +1,5 @@
 # seleniumSoft Test suit
-This is a full automation testing framework to cover the functionality testing building on **selenium** and **nosetests** frameworks. The tesing framework was designed to meet the **PageObjects** desing pattern.  
+This is a full automation testing framework to cover the functionality testing depending on **selenium** and **nosetests** frameworks. The tesing framework was designed to meet the **PageObjects** desing pattern.  
 
 ## Framework Structure:
 ```
