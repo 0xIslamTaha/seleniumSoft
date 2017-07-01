@@ -23,6 +23,16 @@ class LoginPage(BasePage):
 
     def login(self, username, password):
         self.get_login_page()
+        import ipdb; ipdb.set_trace()
+        self.logout()
         self.set_text(element='username', value=username)
         self.set_text(element='password', value=password)
         self.find_element(element='password').submit()
+
+    def logout(self):
+        try:
+            self.click('admin')
+            self.click('logout')
+            return True
+        except:
+            return False

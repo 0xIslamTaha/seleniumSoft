@@ -16,6 +16,7 @@ elements = {
     'password_2': ['ID', 'password2'],
     'department': ['NAME', 'department'],
     'status': ['NAME', 'status'],
-    'save_user': ['XPATH', '//*[@id="form_add_user"]/div[3]/button[2]']
+    'save_user': ['XPATH', '//*[@id="form_add_user"]/div[3]/button[2]'],
+    'logout': ['LINK_TEXT', 'Log Out']
 
 }

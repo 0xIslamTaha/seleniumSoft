@@ -25,6 +25,7 @@ class BasePage:
         self.elements = elements
         self.session = CONFIG['session']
         self.driver = driver
+        self.wait = WebDriverWait(self.driver, 15)
 
     def lg(self, msg):
         pass
@@ -149,6 +150,12 @@ class BasePage:
         location = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, element)))
         ActionChains(self.driver).move_to_element(location).perform()
 
+    def wait_element(self, element):
+        if self.wait_until_element_located(element):
+            return True
+        else:
+            return False
+
     def check_element_is_exist(self, element):
         if self.wait_element(element):
             return True
@@ -168,8 +175,6 @@ class BasePage:
                 break
         else:
             self.fail("This %s item isn't an option in %s list" % (item_value, list_element))
-
-        self.assertEqual(item_value, self.select_obeject.first_selected_option.text)
 
     def get_list_items(self, list_element):
         html_list = self.find_element(list_element)
@@ -229,4 +234,3 @@ class BasePage:
         for i in range(random.randint(0, len(chars))):
             result += random.choice(chars)
         return result
-
