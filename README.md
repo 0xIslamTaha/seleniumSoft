@@ -43,7 +43,7 @@ seleniumSoft
 
 ## Execution steps:
 ```bash
-git clone 
+git clone https://github.com/islamTaha12/seleniumSoft.git
 cd seleniumSoft
 pip3 install requirements.txt
 export PYTHONPATh='./'
