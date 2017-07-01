@@ -10,3 +10,12 @@ class MainMenu(BasePage):
             return True
         else:
             return False
+
+    def get_campaigns_page(self):
+        import ipdb; ipdb.set_trace()
+        self.hover_over_element('training')
+        self.click('campaigns')
+        if 'campaigns' in self.get_url():
+            return True
+        else:
+            return False

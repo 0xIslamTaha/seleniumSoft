@@ -1,5 +1,4 @@
 from pageObjects.basePage.base_page import BasePage
-from pageObjects.pages.login_page import LoginPage
 from pageObjects.navigation.main_menu import MainMenu
 import uuid
 
@@ -7,7 +6,6 @@ import uuid
 class UsersPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
-        self.login_page = LoginPage(driver)
         self.main_menu = MainMenu(driver)
 
     def get_users_page(self):

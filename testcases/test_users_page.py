@@ -1,5 +1,5 @@
 import unittest
-from testcases.baseTest.base_test import BaseTest
+from testcases.base_test import BaseTest
 from pageObjects.pages.login_page import LoginPage
 from pageObjects.pages.users_page import UsersPage
 

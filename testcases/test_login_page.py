@@ -1,4 +1,4 @@
-from testcases.baseTest.base_test import BaseTest
+from testcases.base_test import BaseTest
 from pageObjects.pages.login_page import LoginPage
 import uuid
 
@@ -6,7 +6,7 @@ import uuid
 class LoginTest(BaseTest):
     def setUp(self):
         super().setUp()
-        self.loginPage = LoginPage(self.driver)
+        self.login_page = LoginPage(self.driver)
 
     def tearDown(self):
         self.driver.quit()
@@ -17,8 +17,8 @@ class LoginTest(BaseTest):
         **Test Scenario:**
         #. Login using correct credential, should succeed
         """
-        self.assertTrue(self.loginPage.login_as_admin(username=self.loginPage.admin_username,
-                                                      password=self.loginPage.admin_password))
+        self.assertTrue(self.login_page.login_as_admin(username=self.login_page.admin_username,
+                                                      password=self.login_page.admin_password))
 
     def test02_login_with_wrong_username(self):
         """ ZST-002
@@ -27,8 +27,8 @@ class LoginTest(BaseTest):
         #. Login using wrong username, should fail
         """
         username = str(uuid.uuid4())
-        self.assertFalse(self.loginPage.login_as_admin(username=username,
-                                                       password=self.loginPage.admin_password))
+        self.assertFalse(self.login_page.login_as_admin(username=username,
+                                                       password=self.login_page.admin_password))
 
     def test03_login_with_wrong_password(self):
         """ ZST-003
@@ -37,7 +37,7 @@ class LoginTest(BaseTest):
         #. Login using wrong password, should fail
         """
         password = str(uuid.uuid4())
-        self.assertFalse(self.loginPage.login_as_admin(username=self.loginPage.admin_username,
+        self.assertFalse(self.login_page.login_as_admin(username=self.login_page.admin_username,
                                                        password=password))
 
     def test04_login_with_wrong_username_wrong_password(self):
@@ -48,5 +48,5 @@ class LoginTest(BaseTest):
         """
         username = str(uuid.uuid4())
         password = str(uuid.uuid4())
-        self.assertFalse(self.loginPage.login_as_admin(username=username,
+        self.assertFalse(self.login_page.login_as_admin(username=username,
                                                        password=password))

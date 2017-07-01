@@ -48,23 +48,13 @@ class BasePage:
         if method in ['XPATH', 'ID', 'LINK_TEXT', 'CLASS_NAME', 'NAME', 'TAG_NAME']:
             elements_value = self.driver.find_elements(getattr(By, method), value)
         else:
-            self.fail("This %s method isn't defined" % method)
+            print("This %s method isn't defined" % method)
         return elements_value
 
     def find_element(self, element):
         method = self.elements[element][0]
         value = self.elements[element][1]
-        # if method in ['XPATH', 'ID', 'LINK_TEXT']:
         element_value = self.driver.find_element(getattr(By, method), value)
-        # elif method in ['CLASS_NAME', 'NAME', 'TAG_NAME']:
-        #     item_order = self.elements[element][2]
-        #     elements_value = self.driver.find_elements(getattr(By, method), value)
-        #     if item_order == -1:
-        #         element_value = elements_value
-        #     else:
-        #         element_value = elements_value[item_order]
-        # else:
-        #     self.fail("This %s method isn't defined" % method)
         return element_value
 
     def get_page(self, page_url):
@@ -84,7 +74,7 @@ class BasePage:
             except:
                 time.sleep(1)
         else:
-            self.fail("can't find %s element" % element)
+            print("can't find %s element" % element)
         time.sleep(1)
 
     def click_link(self, link):
@@ -97,7 +87,7 @@ class BasePage:
             except:
                 time.sleep(0.5)
         else:
-            self.fail('NoSuchElementException(%s)' % element)
+            print('NoSuchElementException(%s)' % element)
 
     def get_value(self, element):
         return self.get_attribute(element, "value")
@@ -174,7 +164,7 @@ class BasePage:
                 item_value = option.text
                 break
         else:
-            self.fail("This %s item isn't an option in %s list" % (item_value, list_element))
+            print("This %s item isn't an option in %s list" % (item_value, list_element))
 
     def get_list_items(self, list_element):
         html_list = self.find_element(list_element)
@@ -202,7 +192,7 @@ class BasePage:
             except:
                 time.sleep(1)
         else:
-            self.fail("this %s item isn't exist in this url: %s" % (text_item, self.get_url()))
+            print("this %s item isn't exist in this url: %s" % (text_item, self.get_url()))
 
     def maximize_window(self):
         time.sleep(1)
@@ -234,3 +224,12 @@ class BasePage:
         for i in range(random.randint(0, len(chars))):
             result += random.choice(chars)
         return result
+
+    def verify_data_in_table(self, data):
+        table = self.find_element('table')
+        table_data = table.find_elements_by_tag_name('td')
+        for td in table_data:
+            if data in td:
+                return True
+        else:
+            return False

@@ -17,6 +17,14 @@ elements = {
     'department': ['NAME', 'department'],
     'status': ['NAME', 'status'],
     'save_user': ['XPATH', '//*[@id="form_add_user"]/div[3]/button[2]'],
-    'logout': ['LINK_TEXT', 'Log Out']
+
+    'logout': ['LINK_TEXT', 'Log Out'],
+    'training': ['LINK_TEXT', 'Training'],
+    'campaigns': ['LINK_TEXT', 'Campaigns'],
+    'create_campaign': ['LINK_TEXT', 'Create Campaign'],
+    'title': ['NAME', 'title'],
+    'exam': ['ID', 'exam'],
+    'save_campaign': ['CSS_SELECTOR', '#form_add_campaign > div.form-actions.right > button.btn.blue'],
+    'table': ['TAG_NAME', 'table']
 
 }
