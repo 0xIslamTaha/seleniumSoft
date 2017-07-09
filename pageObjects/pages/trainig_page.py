@@ -19,3 +19,12 @@ class TrainingPage(BasePage):
         self.select(list_element='exam', item_value='Default')
         self.click('save_campaign')
         return self.verify_data_in_table(data=title)
+
+    def get_lessons_page(self):
+        pass
+
+    def get_questions_page(self):
+        pass
+
+    def get_exames_page(self):
+        pass

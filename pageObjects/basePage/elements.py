@@ -25,6 +25,13 @@ elements = {
     'title': ['NAME', 'title'],
     'exam': ['ID', 'exam'],
     'save_campaign': ['CSS_SELECTOR', '#form_add_campaign > div.form-actions.right > button.btn.blue'],
-    'table': ['TAG_NAME', 'table']
+    'table': ['TAG_NAME', 'table'],
+    'admin': ['XPATH', '/html/body/div[1]/div/div[2]/div/ul[1]/li/a'],
+    'default_campaign': ['NAME', 'default_campaign'],
+    'home': ['LINK_TEXT', 'Home'],
+    'departments': ['LINK_TEXT', 'Departments'],
+    'click_department': ['ID', 'click_department'],
+    'table_departments_filter': ['ID', 'table_departments_filter'],
+    'input-sm': ['CLASS_NAME', 'input-sm']
 
 }

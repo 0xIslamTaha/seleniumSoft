@@ -10,7 +10,6 @@ class UsersTest(BaseTest):
         self.login_page = LoginPage(self.driver)
         self.user_page = UsersPage(self.driver)
 
-    @unittest.skip('https://zisoft.atlassian.net/browse/ZIS-233')
     def test01_create_new_user(self):
         """ ZST-005
         *Admin create new user*
@@ -22,5 +21,24 @@ class UsersTest(BaseTest):
         self.login_page.login_as_admin(username=self.login_page.admin_username,
                                        password=self.login_page.admin_password)
         username, password = self.user_page.create_new_user(role='User')
-        self.assertTrue(self.login_page.login_as_user(username, password))
+        self.assertTrue(self.login_page.login_as_user(username, password), "FAIL : Create new user")
 
+    def test02_delete_user(self):
+        """ ZST-006
+        **
+        **Test Scenario:**
+        #. Login as admin.
+        """
+        pass
+
+    def test03_create_new_departments(self):
+        """ ZST-007
+        *Admin create new department*
+        **Test Scenario:**
+        #. Login as admin.
+        #. Create new department, should succeed.
+        """
+        self.login_page.login_as_admin(username=self.login_page.admin_username,
+                                       password=self.login_page.admin_password)
+        self.user_page.get_departments_page()
+        import ipdb; ipdb.set_trace()

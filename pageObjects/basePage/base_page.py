@@ -233,3 +233,28 @@ class BasePage:
                 return True
         else:
             return False
+
+    def submit(self, element):
+        self.find_element(element=element).submit()
+
+    def find_nested_element(self, *args):
+        parent = self.find_element(element=args[0])
+        args = args[1:]
+        for element in args:
+            method = self.elements[element][0]
+            value = self.elements[element][1]
+            parent = parent.find_element(getattr(By, method), value)
+        return parent
+
+
+
+
+
+
+
+
+
+
+
+
+

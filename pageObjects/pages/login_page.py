@@ -14,9 +14,9 @@ class LoginPage(BasePage):
             return False
 
     def login_as_user(self, username, password):
-        self.login(username, password)
         try:
-            self.find_element(element='admin_setting')
+            self.login(username, password)
+            self.find_element(element='home')
             return True
         except:
             return False
