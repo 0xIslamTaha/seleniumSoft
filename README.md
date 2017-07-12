@@ -45,7 +45,7 @@ seleniumSoft
 ```bash
 git clone https://github.com/islamTaha12/seleniumSoft.git
 cd seleniumSoft
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 export PYTHONPATh='./'
 nosetests-3.4 -s -v --logging-level=WARNING --progressive-with-bar --tc-file=config.ini --rednose testcases 
 
