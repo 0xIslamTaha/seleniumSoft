@@ -60,6 +60,12 @@ class UsersPage(BasePage):
             self.get_departments_page()
         search = self.find_nested_element('table_departments_filter', 'input-sm')
         search.send_keys(department)
+        if 'Showing' in self.get_text(element='dataTables_info'):
+            search.clear()
+            return True
+        else:
+            search.clear()
+            return False
 
     def edit_department(self):
         pass
