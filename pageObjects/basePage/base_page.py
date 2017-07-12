@@ -246,15 +246,17 @@ class BasePage:
             parent = parent.find_element(getattr(By, method), value)
         return parent
 
+    def search_for(self, data, table_div_element):
+        search = self.find_nested_element(table_div_element, 'input-sm')
+        search.send_keys(data)
+        if 'Showing 1' in self.get_text(element='dataTables_info'):
+            return True
+        else:
+            return False
 
-
-
-
-
-
-
-
-
-
-
-
+    def get_table_element_data(self):
+        tmp = self.driver.find_element_by_tag_name('tbody').text
+        data = []
+        for row in tmp.split('\n'):
+            data.append(row.split(' ')[6])
+        return data

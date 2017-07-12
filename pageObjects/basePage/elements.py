@@ -32,7 +32,9 @@ elements = {
     'departments': ['LINK_TEXT', 'Departments'],
     'click_department': ['ID', 'click_department'],
     'table_departments_filter': ['ID', 'table_departments_filter'],
+    'table_users_filter': ['ID', 'table_users_filter'],
     'input-sm': ['CLASS_NAME', 'input-sm'],
-    'dataTables_info': ['CLASS_NAME', 'dataTables_info']
+    'dataTables_info': ['CLASS_NAME', 'dataTables_info'],
+    'edit_user': ['LINK_TEXT', 'Edit']
 
 }

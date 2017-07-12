@@ -31,6 +31,20 @@ class UsersTest(BaseTest):
         """
         pass
 
+    def test08_edit_user(self):
+        """ ZST-008
+        *Admin edit an existing user*
+        **Test Scenario:**
+        #. Login as admin.
+        #. Get users page, should succeed
+        """
+        self.login_page.login_as_admin(username=self.login_page.admin_username,
+                                       password=self.login_page.admin_password)
+        self.user_page.get_users_page()
+        self.user_page.edit_user()
+        import ipdb; ipdb.set_trace()
+        # Edit username
+
     def test03_create_new_departments(self):
         """ ZST-007
         *Admin create new department*
