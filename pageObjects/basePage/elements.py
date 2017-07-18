@@ -13,7 +13,7 @@ elements = {
     'language': ['NAME', 'language'],
     'reset': ['ID', 'reset'],
     'password_': ['ID', 'password'],
-    'password_2': ['ID', 'password2'],
+    'password_2': ['ID', 'password_confirmation'],
     'department': ['NAME', 'department'],
     'status': ['NAME', 'status'],
     'save_user': ['XPATH', '//*[@id="form_add_user"]/div[3]/button[2]'],
@@ -35,6 +35,8 @@ elements = {
     'table_users_filter': ['ID', 'table_users_filter'],
     'input-sm': ['CLASS_NAME', 'input-sm'],
     'dataTables_info': ['CLASS_NAME', 'dataTables_info'],
-    'edit_user': ['LINK_TEXT', 'Edit']
+    'edit_user': ['LINK_TEXT', 'Edit'],
+    'delete_user': ['LINK_TEXT', 'Delete'],
+    'ok_btn': ['CLASS_NAME', 'btn-primary']
 
 }

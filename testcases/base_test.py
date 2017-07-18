@@ -1,9 +1,10 @@
-import unittest
-from pytractor import webdriver
+import unittest, random
+from selenium import webdriver
 from pageObjects.basePage.__init__ import CONFIG
 
 
 class BaseTest(unittest.TestCase):
+    DRIVER = ''
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -15,15 +16,22 @@ class BaseTest(unittest.TestCase):
 
     def set_browser(self):
         if CONFIG['browser'] == 'chrome':
-            DRIVER = webdriver.Chrome()
+            self.DRIVER = webdriver.Chrome()
         elif CONFIG['browser'] == 'firefox':
-            DRIVER = webdriver.Firefox()
+            self.DRIVER = webdriver.Firefox()
         elif CONFIG['browser'] == 'ie':
-            DRIVER = webdriver.Ie()
+            self.DRIVER = webdriver.Ie()
         elif CONFIG['browser'] == 'opera':
-            DRIVER = webdriver.Opera()
+            self.DRIVER = webdriver.Opera()
         elif CONFIG['browser'] == 'safari':
-            DRIVER = webdriver.Safari
+            self.DRIVER = webdriver.Safari
         else:
             print("Invalid browser configuration [%s]" % CONFIG['browser'])
-        return DRIVER
+        return self.DRIVER
+
+    def generate_random_string(self):
+        result = ''
+        chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        for i in range(random.randint(0, len(chars))):
+            result += random.choice(chars)
+        return result

@@ -25,7 +25,7 @@ class BasePage:
         self.elements = elements
         self.session = CONFIG['session']
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 15)
+        self.wait = WebDriverWait(self.driver, 10)
 
     def lg(self, msg):
         pass
@@ -248,6 +248,7 @@ class BasePage:
 
     def search_for(self, data, table_div_element):
         search = self.find_nested_element(table_div_element, 'input-sm')
+        search.clear()
         search.send_keys(data)
         if 'Showing 1' in self.get_text(element='dataTables_info'):
             return True
@@ -260,3 +261,7 @@ class BasePage:
         for row in tmp.split('\n'):
             data.append(row.split(' ')[6])
         return data
+
+    def stop_page(self):
+        time.sleep(3)
+        self.driver.execute_script("window.stop();")
