@@ -20,7 +20,7 @@ class UsersPage(BasePage):
             role = random.choice(['Administrator', 'Superuser (Not Used)', 'User'])
         firstname = self.generate_random_string()
         lastname = self.generate_random_string()
-        username = str(uuid.uuid4()).split('-')[0]
+        username = self.generate_random_string()
         password = str(uuid.uuid4()) + 'xTermX'
         self.get_users_page()
         self.click('users_action_button')
@@ -39,6 +39,7 @@ class UsersPage(BasePage):
         self.select(list_element='status', item_value='Enabled')
         self.click('save_user')
         print(' [*] New user : %s' % username)
+        import ipdb; ipdb.set_trace()
         return username, password
 
     def search_for_user(self, username):

@@ -4,7 +4,8 @@ from pageObjects.basePage.__init__ import CONFIG
 
 
 class BaseTest(unittest.TestCase):
-    DRIVER = ''
+    DRIVER = None
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -15,19 +16,20 @@ class BaseTest(unittest.TestCase):
         self.driver.quit()
 
     def set_browser(self):
-        if CONFIG['browser'] == 'chrome':
-            self.DRIVER = webdriver.Chrome()
-        elif CONFIG['browser'] == 'firefox':
-            self.DRIVER = webdriver.Firefox()
-        elif CONFIG['browser'] == 'ie':
-            self.DRIVER = webdriver.Ie()
-        elif CONFIG['browser'] == 'opera':
-            self.DRIVER = webdriver.Opera()
-        elif CONFIG['browser'] == 'safari':
-            self.DRIVER = webdriver.Safari
-        else:
-            print("Invalid browser configuration [%s]" % CONFIG['browser'])
-        return self.DRIVER
+        if not BaseTest.DRIVER:
+            if CONFIG['browser'] == 'chrome':
+                BaseTest.DRIVER = webdriver.Chrome()
+            elif CONFIG['browser'] == 'firefox':
+                BaseTest.DRIVER = webdriver.Firefox()
+            elif CONFIG['browser'] == 'ie':
+                BaseTest.DRIVER = webdriver.Ie()
+            elif CONFIG['browser'] == 'opera':
+                BaseTest.DRIVER = webdriver.Opera()
+            elif CONFIG['browser'] == 'safari':
+                BaseTest.DRIVER = webdriver.Safari
+            else:
+                print("Invalid browser configuration [%s]" % CONFIG['browser'])
+        return BaseTest.DRIVER
 
     def generate_random_string(self):
         result = ''

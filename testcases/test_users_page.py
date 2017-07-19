@@ -15,7 +15,8 @@ class UsersTest(BaseTest):
 
     def tearDown(self):
         # self.user_page.delete_user(username=self.username)
-        super().tearDown()
+        # super().tearDown()
+        pass
 
     def test01_create_new_user(self):
         """ ZST-005
@@ -78,5 +79,3 @@ class UsersTest(BaseTest):
         self.login_page.login_as_admin(username=self.login_page.admin_username,
                                        password=self.login_page.admin_password)
         self.user_page.get_departments_page()
-        import ipdb;
-        ipdb.set_trace()
