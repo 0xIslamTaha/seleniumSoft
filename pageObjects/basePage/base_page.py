@@ -1,9 +1,4 @@
 import time, random
-import unittest
-import logging
-from testconfig import config
-from pytractor import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
@@ -33,7 +28,7 @@ class BasePage:
     def wait_until_element_located(self, element):
         method = self.elements[element][0]
         value = self.elements[element][1]
-        for temp in range(3):
+        for temp in range(2):
             try:
                 self.wait.until(EC.visibility_of_element_located((getattr(By, method), value)))
                 return True
@@ -63,7 +58,7 @@ class BasePage:
         except Exception as e:
             self.lg(' * %s Exception at get_page(%s) ' % (str(e), page_url))
         else:
-            self.execute_angular_script()
+            # self.execute_angular_script()
             self.maximize_window()
 
     def click(self, element):
@@ -75,7 +70,6 @@ class BasePage:
                 time.sleep(1)
         else:
             print("can't find %s element" % element)
-        time.sleep(1)
 
     def click_link(self, link):
         self.get_page(link)
@@ -220,8 +214,11 @@ class BasePage:
 
     def generate_random_string(self):
         result = ''
-        chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        for i in range(random.randint(0, len(chars))):
+        chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'
+        size = random.randint(0, len(chars))
+        if size <= 2:
+            size += 4
+        for i in range(size):
             result += random.choice(chars)
         return result
 

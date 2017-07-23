@@ -7,12 +7,9 @@ class LoginPage(BasePage):
 
     def login_as_admin(self, username, password):
         self.login(username, password)
-        try:
-            self.find_element(element='admin_setting')
-            print(' [*] True')
+        if self.check_element_is_exist(element='left_menu'):
             return True
-        except:
-            print(' [*] False')
+        else:
             return False
 
     def login_as_user(self, username, password):
@@ -26,11 +23,10 @@ class LoginPage(BasePage):
     def login(self, username, password):
         print(' [*] Log in as %s ' % username)
         self.get_login_page()
-        self.logout()
-        self.set_text(element='username', value=username)
-        self.set_text(element='password', value=password)
-        self.find_element(element='password').submit()
-        self.stop_page()
+        if self.check_element_is_exist(element='username'):
+            self.set_text(element='username', value=username)
+            self.set_text(element='password', value=password)
+            self.click(element='login')
 
     def logout(self):
         try:

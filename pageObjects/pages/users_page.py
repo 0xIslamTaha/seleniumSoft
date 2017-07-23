@@ -20,10 +20,9 @@ class UsersPage(BasePage):
             role = random.choice(['Administrator', 'Superuser (Not Used)', 'User'])
         firstname = self.generate_random_string()
         lastname = self.generate_random_string()
-        username = self.generate_random_string()
+        username = self.generate_random_string()[:3]+'xTremXX'
         password = str(uuid.uuid4()) + 'xTermX'
         self.get_users_page()
-        self.click('users_action_button')
         self.click('add_user')
         self.set_text(element='firstName', value=firstname)
         self.set_text(element='lastName', value=lastname)
@@ -31,7 +30,7 @@ class UsersPage(BasePage):
         self.set_text(element='email', value=username + '@gmail.com')
         self.select(list_element='role', item_value=role)
         self.select(list_element='language', item_value='English')
-        self.select(list_element='default_campaign', item_value='All Lessons (en)')
+        self.select(list_element='default_campaign', item_value='All Lessons')
         self.click(element='reset')
         self.set_text(element='password_', value=password)
         self.set_text(element='password_2', value=password)
@@ -39,7 +38,6 @@ class UsersPage(BasePage):
         self.select(list_element='status', item_value='Enabled')
         self.click('save_user')
         print(' [*] New user : %s' % username)
-        import ipdb; ipdb.set_trace()
         return username, password
 
     def search_for_user(self, username):
@@ -75,6 +73,7 @@ class UsersPage(BasePage):
                 self.select(list_element='department', item_value=kwargs[key])
             if key == 'status':
                 self.select(list_element='status', item_value=kwargs[key])
+        import ipdb; ipdb.set_trace()
         self.click('save_user')
 
     def get_edit_user_data(self, username):

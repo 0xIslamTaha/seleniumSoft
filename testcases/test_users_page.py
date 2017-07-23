@@ -1,22 +1,19 @@
 import unittest, random, uuid
 from testcases.base_test import BaseTest
-from pageObjects.pages.login_page import LoginPage
 from pageObjects.pages.users_page import UsersPage
 
 
 class UsersTest(BaseTest):
+    Logged_in = False
+
     def setUp(self):
         super().setUp()
-        self.login_page = LoginPage(self.driver)
         self.user_page = UsersPage(self.driver)
-        self.login_page.login_as_admin(username=self.login_page.admin_username,
-                                       password=self.login_page.admin_password)
         self.username, self.password = self.user_page.create_new_user()
 
     def tearDown(self):
         # self.user_page.delete_user(username=self.username)
-        # super().tearDown()
-        pass
+        super().tearDown()
 
     def test01_create_new_user(self):
         """ ZST-005
@@ -46,19 +43,16 @@ class UsersTest(BaseTest):
         #. Login as admin.
         #. Get users page, should succeed
         """
-        self.login_page.login_as_admin(username=self.login_page.admin_username,
-                                       password=self.login_page.admin_password)
         self.user_page.get_users_page()
-
         original_data = {'firstName': self.generate_random_string(),
                          'lastName': self.generate_random_string(),
                          'username_': self.generate_random_string(),
                          'email': self.generate_random_string()+"@gmail.com",
-                         'role': random.choice['Administrator', 'Superuser (Not Used)', 'User'],
-                         'language': random.choice['English', 'Arabic'],
-                         'default_campaign': random.choice['All Lessons (ar)', 'All Lessons (en)'],
+                         'role': random.choice(['Administrator', 'Superuser (Not Used)', 'User']),
+                         'language': random.choice(['English', 'Arabic']),
+                         'default_campaign': 'All Lessons',
                          'password_': str(uuid.uuid4())+'xTreMx',
-                         'status': random.choice['Enabled', 'Disabled']}
+                         'status': random.choice(['Enabled', 'Disabled'])}
         self.user_page.edit_user(user=self.username, firstName=original_data['firstName'],
                                  lastName=original_data['lastName'], username_=original_data['username_'],
                                  email=original_data['email'], role=original_data['role'],

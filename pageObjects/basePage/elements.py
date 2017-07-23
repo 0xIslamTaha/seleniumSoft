@@ -37,6 +37,8 @@ elements = {
     'dataTables_info': ['CLASS_NAME', 'dataTables_info'],
     'edit_user': ['LINK_TEXT', 'Edit'],
     'delete_user': ['LINK_TEXT', 'Delete'],
-    'ok_btn': ['CLASS_NAME', 'btn-primary']
+    'ok_btn': ['CLASS_NAME', 'btn-primary'],
+    'left_menu': ['ID', 'alert_container'],
+    'login': ['ID', 'login']
 
 }
