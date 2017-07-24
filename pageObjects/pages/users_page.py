@@ -37,7 +37,6 @@ class UsersPage(BasePage):
         self.select(list_element='department', item_value='Default')
         self.select(list_element='status', item_value='Enabled')
         self.click('save_user')
-        print(' [*] New user : %s' % username)
         return username, password
 
     def search_for_user(self, username):
@@ -73,7 +72,6 @@ class UsersPage(BasePage):
                 self.select(list_element='department', item_value=kwargs[key])
             if key == 'status':
                 self.select(list_element='status', item_value=kwargs[key])
-        import ipdb; ipdb.set_trace()
         self.click('save_user')
 
     def get_edit_user_data(self, username):
@@ -89,7 +87,6 @@ class UsersPage(BasePage):
     def delete_user(self, username=''):
         if self.search_for_user(username=username):
             self.click(element='delete_user')
-            import ipdb; ipdb.set_trace()
             self.click(element='ok_btn')
         return not self.search_for_user(username=username)
 

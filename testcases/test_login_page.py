@@ -1,5 +1,4 @@
 from testcases.base_test import BaseTest
-from pageObjects.pages.login_page import LoginPage
 import uuid
 
 
